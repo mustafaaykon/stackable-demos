@@ -13,11 +13,15 @@ spec:
   driver:
     config:
       resources:
+        cpu:
+          min: "500m"
         memory:
           limit: "1Gi"
   executor:
     replicas: 1
     config:
       resources:
+        cpu:
+          min: "500m"
         memory:
           limit: "1Gi"
