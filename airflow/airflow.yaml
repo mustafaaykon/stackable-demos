@@ -7,7 +7,7 @@ spec:
   image:
     productVersion: 2.7.2
   clusterConfig:
-    loadExamples: true
+    loadExamples: false
     exposeConfig: false
     listenerClass: external-unstable
     credentialsSecret: airflow-credentials
