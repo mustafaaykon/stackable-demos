@@ -13,17 +13,11 @@ spec:
   driver:
     config:
       resources:
-        cpu:
-          min: "1"
-          max: "2"
         memory:
           limit: "1Gi"
   executor:
     replicas: 1
     config:
       resources:
-        cpu:
-          min: "1"
-          max: "2"
         memory:
           limit: "1Gi"
