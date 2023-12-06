@@ -1,0 +1,48 @@
+---
+apiVersion: airflow.stackable.tech/v1alpha1
+kind: AirflowCluster
+metadata:
+  name: airflow
+spec:
+  image:
+    productVersion: 2.7.2
+  clusterConfig:
+    loadExamples: false
+    exposeConfig: false
+    listenerClass: external-unstable
+    credentialsSecret: airflow-credentials
+    dagsGitSync:
+      - repo: https://github.com/mustafaaykon/stackable-demos
+        branch: main
+        gitFolder: /airflow-scheduled-job//airflow/dags
+        depth: 10
+        wait: 20
+        gitSyncConf:
+          --rev: HEAD
+
+
+  webservers:
+    roleGroups:
+      default:
+        envOverrides:
+          AIRFLOW_CONN_KUBERNETES_IN_CLUSTER: "kubernetes://?__extra__=%7B%22extra__kubernetes__in_cluster%22%3A+true%2C+%22extra__kubernetes__kube_config%22%3A+%22%22%2C+%22extra__kubernetes__kube_config_path%22%3A+%22%22%2C+%22extra__kubernetes__namespace%22%3A+%22%22%7D"
+        replicas: 1
+  celeryExecutors:
+    roleGroups:
+      default:
+        envOverrides:
+          AIRFLOW_CONN_KUBERNETES_IN_CLUSTER: "kubernetes://?__extra__=%7B%22extra__kubernetes__in_cluster%22%3A+true%2C+%22extra__kubernetes__kube_config%22%3A+%22%22%2C+%22extra__kubernetes__kube_config_path%22%3A+%22%22%2C+%22extra__kubernetes__namespace%22%3A+%22%22%7D"
+        replicas: 2
+    config:
+      resources:
+        cpu:
+          min: 400m
+          max: 800m
+        memory:
+          limit: 2Gi
+  schedulers:
+    roleGroups:
+      default:
+        envOverrides:
+          AIRFLOW_CONN_KUBERNETES_IN_CLUSTER: "kubernetes://?__extra__=%7B%22extra__kubernetes__in_cluster%22%3A+true%2C+%22extra__kubernetes__kube_config%22%3A+%22%22%2C+%22extra__kubernetes__kube_config_path%22%3A+%22%22%2C+%22extra__kubernetes__namespace%22%3A+%22%22%7D"
+        replicas: 1
