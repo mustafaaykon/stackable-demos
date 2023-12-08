@@ -9,7 +9,6 @@ spec:
   accessStyle: Path
   credentials:
     secretClass: hive-s3-secret-class
-
 ---
 apiVersion: v1
 kind: Secret

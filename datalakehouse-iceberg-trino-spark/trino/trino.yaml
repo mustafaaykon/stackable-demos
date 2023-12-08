@@ -1,0 +1,21 @@
+---
+apiVersion: trino.stackable.tech/v1alpha1
+kind: TrinoCluster
+metadata:
+  name: simple-trino
+spec:
+  image:
+    productVersion: "428"
+  clusterConfig:
+    catalogLabelSelector:
+      matchLabels:
+        trino: simple-trino
+    listenerClass: external-unstable
+  coordinators:
+    roleGroups:
+      default:
+        replicas: 2
+  workers:
+    roleGroups:
+      default:
+        replicas: 2
