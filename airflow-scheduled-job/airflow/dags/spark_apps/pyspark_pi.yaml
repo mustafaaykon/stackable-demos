@@ -14,8 +14,7 @@ spec:
     config:
       resources:
         cpu:
-          min: "1"
-          max: "2"
+          min: "250m"
         memory:
           limit: "1Gi"
   executor:
@@ -23,7 +22,6 @@ spec:
     config:
       resources:
         cpu:
-          min: "1"
-          max: "2"
+          min: "250m"
         memory:
           limit: "1Gi"
