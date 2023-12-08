@@ -16,7 +16,7 @@ spec:
         cpu:
           min: "250m"
         memory:
-          limit: "500Mi"
+          limit: "1Gi"
   executor:
     replicas: 1
     config:
@@ -24,4 +24,4 @@ spec:
         cpu:
           min: "250m"
         memory:
-          limit: "500Mi"
+          limit: "1Gi"
